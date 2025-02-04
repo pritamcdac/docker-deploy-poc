@@ -20,10 +20,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t yourdockerhubusername/my-node-app:latest .
+        run: docker build -t pritamdeshmukh/my-node-app:latest .
 
       - name: Push Docker image
-        run: docker push yourdockerhubusername/my-node-app:latest
+        run: docker push pritamdeshmukh/my-node-app:latest
 
   deploy:
     runs-on: self-hosted
@@ -31,10 +31,10 @@ jobs:
 
     steps:
       - name: Pull Docker image
-        run: docker pull yourdockerhubusername/my-node-app:latest
+        run: docker pull pritamdeshmukh/my-node-app:latest
 
       - name: Stop and remove old container
         run: docker stop my-container || true && docker rm my-container || true
 
       - name: Run new container
-        run: docker run -d --name my-container -p 3000:3000 yourdockerhubusername/my-node-app:latest
+        run: docker run -d --name my-container -p 3333:3000 pritamdeshmukh/my-node-app:latest
